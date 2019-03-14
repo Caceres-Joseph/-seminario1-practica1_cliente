@@ -1,147 +1,137 @@
 <template>
-  <v-container>
-    <v-layout
-      text-xs-center
-      wrap
-    >
-      <v-flex xs12>
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        ></v-img>
-      </v-flex>
+<v-app id="inspire">
+    <v-navigation-drawer
+        app
+        v-model="drawer"
+        clipped
+        fixed
+        :mini-variant.sync="mini"
+        mini>
 
-      <v-flex mb-4>
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
-        </p>
-      </v-flex>
+        <v-toolbar
+            flat
+            class="transparent">
+            <v-list class="pa-0">
+                <v-list-tile avatar>
+                    <v-list-tile-avatar>
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                    </v-list-tile-avatar>
 
-      <v-flex
-        mb-5
-        xs12
-      >
-        <h2 class="headline font-weight-bold mb-3">What's next?</h2>
+                        <v-list-tile-content>
+                            <v-list-tile-title>Jhosef Cáceres</v-list-tile-title>
+                        </v-list-tile-content>
 
-        <v-layout justify-center>
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
+                        <v-list-tile-action>
+                            <v-btn
+                                icon
+                                @click.stop="mini = !mini">
+                                <v-icon>chevron_left</v-icon>
+                            </v-btn>
+                        </v-list-tile-action>
+                </v-list-tile>
+            </v-list>
+        </v-toolbar>
+        <v-list
+            class="pt-0"
+            dense>
+            <v-divider></v-divider>
+
+            <v-list-tile
+                v-for="item in items"
+                :key="item.title">
+                <v-list-tile-action>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-tile-action>
+
+                <v-list-tile-content>
+                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                </v-list-tile-content>
+            </v-list-tile>
+        </v-list>
+    </v-navigation-drawer>
+    <v-toolbar
+        :clipped-left="$vuetify.breakpoint.lgAndUp"
+        color="blue darken-3"
+        dark
+        app
+        fixed>
+        <v-toolbar-title
+            style="width: 300px"
+            class="ml-0 pl-3">
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <span class="hidden-sm-and-down">New Games</span>
+        </v-toolbar-title>
+        <v-text-field
+            flat
+            solo-inverted
+            hide-details
+            prepend-inner-icon="search"
+            label="Buscar"
+            class="hidden-sm-and-down"></v-text-field>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+            <v-icon>apps</v-icon>
+        </v-btn>
+        <v-btn icon>
+            <v-icon>notifications</v-icon>
+        </v-btn>
+        <v-btn
+            icon
+            large>
+            <v-avatar
+                size="32px"
+                tile>
+                <img
+            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+            alt="Vuetify"
           >
-            {{ next.text }}
-          </a>
-        </v-layout>
-      </v-flex>
+        </v-avatar>
+        </v-btn>
+    </v-toolbar>
+    <v-content>
+        <br>
+        <cuerpo />
+    </v-content>
+    <v-footer class="pa-3 justify-center">
+        <div>&copy; Seminario1 Primer Semestre {{ new Date().getFullYear() }} <strong>Jhosef Cáceres - 201513595</strong></div>
+    </v-footer>
 
-      <v-flex
-        xs12
-        mb-5
-      >
-        <h2 class="headline font-weight-bold mb-3">Important Links</h2>
-
-        <v-layout justify-center>
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-layout>
-      </v-flex>
-
-      <v-flex
-        xs12
-        mb-5
-      >
-        <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
-
-        <v-layout justify-center>
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-  </v-container>
+</v-app>
 </template>
 
 <script>
-  export default {
+import cuerpo from './cuerpo/cuerpo.vue'
+export default {
+    components: {
+        cuerpo
+    },
     data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader'
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify'
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify'
-        }
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com'
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com'
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuetifyjs.com'
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs'
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify'
-        }
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer'
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/layout/pre-defined'
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-        }
-
-      ]
-    })
-  }
+        drawer: true,
+        items: [{
+                title: 'Inicio',
+                icon: 'dashboard'
+            },
+            {
+                title: 'Acerca de',
+                icon: 'question_answer'
+            }
+        ],
+        mini: true,
+        right: null,
+    }),
+    props: {
+        source: String
+    }
+}
 </script>
 
 <style>
-
+.v-card--reveal {
+    align-items: center;
+    bottom: 0;
+    justify-content: center;
+    opacity: .5;
+    position: absolute;
+    width: 100%;
+}
 </style>
