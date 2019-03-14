@@ -48,6 +48,8 @@ export default {
                 this.println("Hay que llenar todos los campos");
                 return;
             }
+
+            this.barra = true;
             this.subirImag(this.files2[0]); //con est estoy subiendo la imagen al servidor 
 
         },
@@ -69,8 +71,10 @@ export default {
                 .then((response) => {
                     this.println(response.data);
 
-                    Object.assign(this.$data, getDefaultData());
-                    this.inicializar();
+                    setTimeout(() => {
+                        Object.assign(this.$data, getDefaultData());
+                        this.inicializar();
+                    }, 1000);
                 })
                 .catch((e) => {
                     this.println("falló");

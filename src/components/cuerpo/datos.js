@@ -31,7 +31,8 @@ export default function getDefaultData() {
         | Imagen
         |------------------- 
         */
-       itemsTotales:[] 
+        itemsTotales: [],
+        barra: false
 
     }
 }

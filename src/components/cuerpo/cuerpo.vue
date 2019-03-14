@@ -19,7 +19,7 @@
                             max-width="600">
                             <v-img
                                 :aspect-ratio="16/9"
-                                src="https://cdn.vuetifyjs.com/images/cards/kitchen.png">
+                                :src="'https://s3.amazonaws.com/'+ it2.imagen">
                                 <v-expand-transition>
                                     <div
                                         v-if="hover"
@@ -32,20 +32,21 @@
                             <v-card-text
                                 class="pt-4"
                                 style="position: relative;">
-                                <v-btn 
+
+                                <v-btn
+                                    absolute
                                     color="orange"
                                     class="white--text"
                                     fab
-                                    medium
-                                    right 
-                                    
-                                    >
+                                    medium 
+                                    right
+                                    top>
                                     <v-icon>add_shopping_cart</v-icon>
                                 </v-btn>
-                                <div class="font-weight-light grey--text title mb-2">{{new Date(it2.created_at).toLocaleString()}}</div>
+                                <div class="font-weight-light grey--text subheading mb-2">{{new Date(it2.created_at).toLocaleString()}}</div>
                                 <h3 class="display-1 font-weight-light orange--text mb-2">{{it2.nombre}}</h3>
                                 <div class="font-weight-light title mb-2">
-                                  {{it2.clave}}
+                                    {{it2.clave}}
                                 </div>
                             </v-card-text>
                         </v-card>
@@ -60,6 +61,7 @@
         v-model="dialog"
         width="800px">
         <v-card>
+            <v-progress-linear v-if="barra" :indeterminate="true"></v-progress-linear>
             <v-card-title class="grey lighten-4 py-4 title">
                 Insertar nuevo juego
             </v-card-title>

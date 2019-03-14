@@ -8,7 +8,7 @@
         :mini-variant.sync="mini"
         mini>
 
-        <v-toolbar
+        <v-toolbar 
             flat
             class="transparent">
             <v-list class="pa-0">
