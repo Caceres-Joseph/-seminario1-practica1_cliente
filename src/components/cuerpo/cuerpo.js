@@ -20,7 +20,7 @@ export default {
     methods: {
         inicializar() {
 
-            let uri = "http://52.15.87.95:3000/tasks";
+            let uri = "http://18.191.132.99:3000/tasks";
  
             this.axios
                 .get(uri)
@@ -64,7 +64,7 @@ export default {
         registroDB(nombreImagen) {
             this.items.imagen = nombreImagen;
 
-            let uri = "http://52.15.87.95:3000/tasks";
+            let uri = "http://18.191.132.99:3000/tasks";
  
             this.axios
                 .post(uri, this.items)
@@ -96,7 +96,7 @@ export default {
 
         subirImag(file) {
             let formData = new FormData();
-            let uri = "http://52.15.87.95:3000/upload";
+            let uri = "http://18.191.132.99:3000/upload";
             formData.append("file", file);
 
             this.axios
